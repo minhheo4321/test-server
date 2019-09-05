@@ -51,6 +51,7 @@ app.get('/home', (req, res) => {
 // });
 
 app.post('/register', (req, res) => {
+  // TODO: handle if req.body.username or password is undefined
   var username = req.body.username;
   var password = req.body.password;
   let user = {};
@@ -61,6 +62,7 @@ app.post('/register', (req, res) => {
   fs.writeFile("user.json", writeJson, 'utf8', (err) => {
     if (err) {
       console.log("error writing json");
+      // TODO: Don't return console.log()
       return console.log(err);
     }
     console.log("register succeed");
@@ -91,6 +93,7 @@ app.post('/login', (req, res) => {
 });
 
 app.delete('/delete', (req, res) => {
+  // correct flow
   res.json(currentUser);
   for (let i = 0; i < userList.length; i++) {
     if (userList[i].username == currentUser.username && userList[i].password == currentUser.password) {
